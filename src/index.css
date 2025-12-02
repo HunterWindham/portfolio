@@ -1,68 +1,280 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* ============================================================================
+   🎨 DESIGN TOKENS
+   These are like your crayon box - all the colors, sizes, and styles 
+   you'll use throughout your website live here.
+   ============================================================================ */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+@theme {
+  /* 🟣 Brand Colors - Your website's signature colors */
+  --color-primary: #6049EA;          /* Main purple - buttons, links */
+  --color-primary-variant: #7360ED;  /* Darker purple - hover states */
+  --color-accent: #E8A03A;           /* Gold pop of color */
+
+  /* ⬜ Light Mode Colors - The default look */
+  --color-bg: #F0F0F0;               /* Page background */
+  --color-surface: #F6F7F9;          /* Card/box backgrounds */
+  --color-muted: #DCDCDE;            /* Subtle backgrounds */
+  --color-text-high: #0F1724;        /* Main text (dark) */
+  --color-text-medium: #495057;      /* Secondary text (gray) */
+  --color-text-low: #8A90A0;         /* Faded text (light gray) */
+  --color-border: #E6E8EB;           /* Lines and dividers */
+
+  /* 🚦 Status Colors - Feedback colors */
+  --color-success: #16A34A;          /* Green = good! */
+  --color-warning: #F59E0B;          /* Yellow = careful! */
+  --color-danger: #EF4444;           /* Red = uh oh! */
+
+  /* ✏️ Fonts */
+  --font-heading: Inter, system-ui, sans-serif;
+  --font-body: Inter, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* 📏 Spacing - How much room things need */
+  --spacing-xs: 4px;    /* Tiny gap */
+  --spacing-sm: 8px;    /* Small gap */
+  --spacing-md: 16px;   /* Medium gap */
+  --spacing-lg: 24px;   /* Large gap */
+  --spacing-xl: 40px;   /* Extra large gap */
+  --spacing-xxl: 64px;  /* Huge gap */
+
+  /* 🔘 Corners - How round things are */
+  --radius-sm: 6px;       /* Slightly rounded */
+  --radius-md: 12px;      /* Nicely rounded */
+  --radius-lg: 20px;      /* Very rounded */
+  --radius-round: 9999px; /* Fully circular */
+
+  /* 🌫️ Shadows - Depth effect under elements */
+  --shadow-1: 0 1px 3px rgba(16, 24, 40, 0.06);  /* Soft shadow */
+  --shadow-2: 0 6px 24px rgba(16, 24, 40, 0.08); /* Floating shadow */
+
+  /* ⚡ Animation - How fast things move */
+  --ease-smooth: cubic-bezier(0.2, 0.9, 0.3, 1);
+  --duration-fast: 120ms;    /* Quick flash */
+  --duration-normal: 200ms;  /* Normal speed */
+  --duration-slow: 320ms;    /* Slow and smooth */
+
+  /* 📦 Container - Max width for content */
+  --container-max: 1100px;
+  --container-gutter: 24px;
+}
+
+/* ============================================================================
+   🌙 DARK MODE
+   When someone turns on dark mode, these colors replace the light ones.
+   ============================================================================ */
+
+:root.dark {
+  --color-bg: #0F1419;
+  --color-surface: #1A2028;
+  --color-muted: #242D38;
+  --color-text-high: #F1F3F5;
+  --color-text-medium: #A8B3C4;
+  --color-text-low: #6C7A8E;
+  --color-border: #2D3748;
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 6px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================================
+   🏠 BASE STYLES
+   These rules apply to the whole page - like setting the foundation.
+   ============================================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Makes sizing predictable */
+}
+
+html {
+  scroll-behavior: smooth;           /* Scroll nicely, not jumpy */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text-high);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ============================================================================
+   📝 TEXT SIZES
+   Use these classes to make text bigger or smaller.
+   Example: <h1 class="text-h1">Big Title</h1>
+   ============================================================================ */
+
+.text-h1 {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.text-h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+.text-h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+.text-body-large {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.text-body {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.text-caption {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.text-small {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* ============================================================================
+   📦 CONTAINER
+   Keeps your content centered and not too wide.
+   Example: <div class="container">Your content here</div>
+   ============================================================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+/* ============================================================================
+   🔘 BUTTONS
+   Clickable buttons! Mix sizes + styles for different looks.
+   
+   Sizes: btn--small, btn--medium, btn--large
+   Styles: btn--solid (filled), btn--outline (border), btn--ghost (invisible)
+   
+   Example: <button class="btn btn--medium btn--solid">Click Me</button>
+   ============================================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: 10px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: 
+    transform var(--duration-normal) var(--ease-smooth),
+    background-color var(--duration-normal) var(--ease-smooth),
+    box-shadow var(--duration-normal) var(--ease-smooth);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Button Sizes */
+.btn--small  { height: 36px; padding: 8px 12px;  font-size: 14px; }
+.btn--medium { height: 44px; padding: 12px 20px; font-size: 15px; }
+.btn--large  { height: 56px; padding: 16px 26px; font-size: 16px; }
+
+/* Button Styles */
+.btn--solid {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+}
+
+.btn--solid:hover {
+  background-color: var(--color-primary-variant);
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 1em var(--color-primary));
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-text-high);
+  border: 1px solid var(--color-border);
+}
+
+.btn--outline:hover {
+  background-color: var(--color-muted);
+  filter: drop-shadow(0 0 1em var(--color-primary));
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-text-high);
+  border: none;
+}
+
+.btn--ghost:hover {
+  background-color: var(--color-muted);
+  filter: drop-shadow(0 0 1em var(--color-primary));
+}
+
+/* ============================================================================
+   🔗 LINKS
+   Makes links primary color and hover nicely.
+   ============================================================================ */
+
+a {
+  text-decoration: none;
+  transition: color var(--duration-slow) var(--ease-smooth);
+}
+
+/* Links in content are purple, nav links stay normal */
+a:not(nav a):not(header a):not(footer a) {
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-primary);
+  filter: drop-shadow(0 0 1em var(--color-primary));
+}
+
+/* ============================================================================
+   ♿ ACCESSIBILITY
+   When you tab to something, show a clear outline so people can see it.
+   ============================================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   📱 RESPONSIVE
+   Make text smaller on phones so it fits better.
+   ============================================================================ */
+
+@media (max-width: 900px) {
+  .text-h1 { font-size: 36px; line-height: 44px; }
+  .text-h2 { font-size: 28px; line-height: 36px; }
+  .text-h3 { font-size: 20px; line-height: 28px; }
+}
+
+@media (max-width: 640px) {
+  .text-h1 { font-size: 28px; line-height: 36px; }
+  .text-h2 { font-size: 24px; line-height: 32px; }
 }
