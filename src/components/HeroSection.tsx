@@ -1,4 +1,4 @@
-import headshotImg from '../assets/headshot.jpg';
+import headshotImg from '../assets/headshot.webp';
 import { SocialLinks } from './SocialLinks';
 
 export function HeroSection() {
