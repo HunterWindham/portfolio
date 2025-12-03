@@ -21,7 +21,8 @@ export function Header() {
         fixed top-0 left-0 right-0 z-900 h-[72px]
         flex items-center justify-between
         px-md md:px-lg
-        bg-bg transition-shadow duration-(--duration-normal)
+        bg-bg/80 backdrop-blur-md
+        transition-shadow duration-(--duration-normal)
         ${isScrolled ? 'shadow-(--shadow-1)' : ''}
       `}
     >
@@ -29,7 +30,7 @@ export function Header() {
         {/* Logo */}
         <a
           href="#"
-          className="text-[20px] font-bold text-text-high hover:no-underline"
+          className="text-body-large font-bold text-text-high hover:no-underline"
         >
           Hunter Windham
         </a>

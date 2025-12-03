@@ -1,22 +1,31 @@
 import headshotImg from '../assets/headshot.webp';
+import { LiquidEther } from './LiquidEther';
 import { SocialLinks } from './SocialLinks';
 
 export function HeroSection() {
   return (
     <section
       className="
+        relative
         min-h-[calc(100vh-72px)] pt-[72px]
         flex items-center
         py-xxl
       "
     >
-      <div className="container">
+      {/* Animated fluid background */}
+      <div
+        className="absolute inset-0"
+      >
+        <LiquidEther/>
+      </div>
+
+      <div className="container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
           {/* Left Content */}
           <div className="order-2 md:order-1">
             <p
               className="
-                uppercase text-[14px] tracking-[0.12em]
+                uppercase text-caption tracking-[0.12em]
                 text-text-medium
                 mb-[12px]
               "

@@ -13,12 +13,12 @@
   --color-accent: #E8A03A;           /* Gold pop of color */
 
   /* ⬜ Light Mode Colors - The default look */
-  --color-bg: #F0F0F0;               /* Page background */
-  --color-surface: #F6F7F9;          /* Card/box backgrounds */
+  --color-bg: #F6F7F9;               /* Page background */
+  --color-surface: #F0F0F0;          /* Card/box backgrounds */
   --color-muted: #DCDCDE;            /* Subtle backgrounds */
   --color-text-high: #0F1724;        /* Main text (dark) */
-  --color-text-medium: #495057;      /* Secondary text (gray) */
-  --color-text-low: #8A90A0;         /* Faded text (light gray) */
+  --color-text-medium: #3D4451;      /* Secondary text (darker gray for better contrast) */
+  --color-text-low: #5C6370;         /* Faded text (meets WCAG AA ~4.8:1) */
   --color-border: #E6E8EB;           /* Lines and dividers */
 
   /* 🚦 Status Colors - Feedback colors */
@@ -66,9 +66,9 @@
    ============================================================================ */
 
 :root.dark {
-  --color-bg: #0F1419;
-  --color-surface: #1A2028;
-  --color-muted: #242D38;
+  --color-bg: #18181a;
+  --color-surface: #222224;
+  --color-muted: #2a2a2d;
   --color-text-high: #F1F3F5;
   --color-text-medium: #A8B3C4;
   --color-text-low: #6C7A8E;
@@ -103,51 +103,52 @@ body {
 }
 
 /* ============================================================================
-   📝 TEXT SIZES
-   Use these classes to make text bigger or smaller.
+   📝 TEXT SIZES (1.333 Modular Scale - "Perfect Fourth")
+   Each size is ~1.333× the previous: 12 → 16 → 21 → 28 → 38 → 50
+   This creates harmonious visual rhythm throughout the design.
    Example: <h1 class="text-h1">Big Title</h1>
    ============================================================================ */
 
 .text-h1 {
   font-family: var(--font-heading);
-  font-size: 48px;
-  line-height: 56px;
+  font-size: 50px;     /* 38 × 1.333 */
+  line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .text-h2 {
   font-family: var(--font-heading);
-  font-size: 32px;
-  line-height: 40px;
+  font-size: 38px;     /* 28 × 1.333 */
+  line-height: 1.2;
   font-weight: 700;
 }
 
 .text-h3 {
   font-family: var(--font-heading);
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 28px;     /* 21 × 1.333 */
+  line-height: 1.3;
   font-weight: 600;
 }
 
 .text-body-large {
-  font-size: 18px;
-  line-height: 28px;
+  font-size: 21px;     /* 16 × 1.333 */
+  line-height: 1.5;
 }
 
 .text-body {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 16px;     /* Base size */
+  line-height: 1.5;
 }
 
 .text-caption {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 14px;     /* Intermediate step for UI elements */
+  line-height: 1.4;
 }
 
 .text-small {
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 12px;     /* 16 ÷ 1.333 */
+  line-height: 1.4;
 }
 
 /* ============================================================================
@@ -265,16 +266,18 @@ a:hover {
 
 /* ============================================================================
    📱 RESPONSIVE
-   Make text smaller on phones so it fits better.
+   Scale down headings on smaller screens while maintaining 1.333 ratio.
+   Tablet: 38 → 28 → 21 (shifted down one step)
+   Mobile: 28 → 21 → 16 (shifted down two steps)
    ============================================================================ */
 
 @media (max-width: 900px) {
-  .text-h1 { font-size: 36px; line-height: 44px; }
-  .text-h2 { font-size: 28px; line-height: 36px; }
-  .text-h3 { font-size: 20px; line-height: 28px; }
+  .text-h1 { font-size: 38px; line-height: 1.15; }
+  .text-h2 { font-size: 28px; line-height: 1.25; }
+  .text-h3 { font-size: 21px; line-height: 1.35; }
 }
 
 @media (max-width: 640px) {
-  .text-h1 { font-size: 28px; line-height: 36px; }
-  .text-h2 { font-size: 24px; line-height: 32px; }
+  .text-h1 { font-size: 28px; line-height: 1.2; }
+  .text-h2 { font-size: 21px; line-height: 1.3; }
 }
