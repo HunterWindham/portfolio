@@ -19,7 +19,7 @@
   --color-text-high: #0F1724;        /* Main text (dark) */
   --color-text-medium: #3D4451;      /* Secondary text (darker gray for better contrast) */
   --color-text-low: #5C6370;         /* Faded text (meets WCAG AA ~4.8:1) */
-  --color-border: #E6E8EB;           /* Lines and dividers */
+  --color-border: #C4C9D1;           /* Lines and dividers */
 
   /* 🚦 Status Colors - Feedback colors */
   --color-success: #16A34A;          /* Green = good! */
@@ -72,7 +72,7 @@
   --color-text-high: #F1F3F5;
   --color-text-medium: #A8B3C4;
   --color-text-low: #6C7A8E;
-  --color-border: #2D3748;
+  --color-border: #404D63;
   --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-2: 0 6px 24px rgba(0, 0, 0, 0.4);
 }

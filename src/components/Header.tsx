@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../context';
-import { SunIcon, MoonIcon } from '../assets/icons';
+import { SunIcon, MoonIcon, TerminalIcon } from '../assets/icons';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +33,7 @@ export function Header() {
           href="#"
           className="text-body-large font-bold text-text-high hover:no-underline"
         >
-          Hunter Windham
+          <TerminalIcon />
         </a>
 
         {/* Desktop Navigation */}
@@ -47,7 +47,7 @@ export function Header() {
               bg-surface text-text-high
               hover:bg-muted hover:text-primary
               transition-colors duration-(--duration-fast)
-              border-none cursor-pointer btn--ghost
+              border-none cursor-pointer btn--outline
             "
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           >
@@ -66,7 +66,7 @@ export function Header() {
               bg-surface text-text-high
               hover:bg-muted hover:text-primary
               transition-colors duration-(--duration-fast)
-              border-none cursor-pointer btn--ghost
+              border-none cursor-pointer btn--outline
             "
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           >

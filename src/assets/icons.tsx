@@ -112,3 +112,29 @@ export function MoonIcon({ size = 20, className }: IconProps) {
     </svg>
   )
 }
+
+export function TerminalIcon({ size = 40, className }: IconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.25"
+      strokeLinecap="square"
+      strokeLinejoin="miter"
+      className={className}
+    >
+      {/* Terminal window frame */}
+      <rect x="2" y="3" width="20" height="18" rx="3" ry="3" />
+      {/* Title bar separator */}
+      <line x1="2" y1="7" x2="22" y2="7" />
+      {/* Prompt chevron */}
+      <polyline points="6 11 9 13.5 6 16" />
+      {/* Cursor line */}
+      <line x1="11" y1="16" x2="17" y2="16" />
+    </svg>
+  )
+}

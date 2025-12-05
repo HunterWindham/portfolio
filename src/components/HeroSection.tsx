@@ -55,7 +55,7 @@ export function HeroSection() {
           <div className="order-1 md:order-2 flex justify-center md:justify-end animate-in animate-scale-in delay-2">
             <div
               className="
-                relative w-full max-w-[400px] aspect-3/4
+                relative w-full max-w-[280px] md:max-w-[400px] aspect-3/4
                 rounded-md overflow-hidden
                 bg-linear-to-br from-surface to-muted
                 shadow-(--shadow-2)
