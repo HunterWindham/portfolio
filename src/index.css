@@ -91,6 +91,7 @@
 html {
   scroll-behavior: smooth;           /* Scroll nicely, not jumpy */
   -webkit-font-smoothing: antialiased;
+  overflow-y: scroll;                /* Prevents layout shift from scrollbar appearing */
 }
 
 body {
@@ -280,4 +281,93 @@ a:hover {
 @media (max-width: 640px) {
   .text-h1 { font-size: 28px; line-height: 1.2; }
   .text-h2 { font-size: 21px; line-height: 1.3; }
+}
+
+/* ============================================================================
+   ✨ ENTRANCE ANIMATIONS
+   Smooth slide-in animations for page load. Elements start invisible and
+   animate into view with staggered timing for a polished feel.
+   ============================================================================ */
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Base animation class - elements start hidden */
+.animate-in {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--ease-smooth);
+}
+
+/* Animation types */
+.animate-slide-up {
+  animation-name: slide-up;
+  animation-duration: 1000ms;
+}
+
+.animate-slide-down {
+  animation-name: slide-down;
+  animation-duration: 850ms;
+}
+
+.animate-scale-in {
+  animation-name: scale-in;
+  animation-duration: 1200ms;
+}
+
+.animate-fade-in {
+  animation-name: fade-in;
+  animation-duration: 850ms;
+  animation-timing-function: ease-out; /* Smoother than custom curve for pure opacity */
+}
+
+/* Staggered delays - creates cascade effect */
+.delay-1 { animation-delay: 150ms; }
+.delay-2 { animation-delay: 350ms; }
+.delay-3 { animation-delay: 600ms; }
+.delay-4 { animation-delay: 850ms; }
+.delay-5 { animation-delay: 1100ms; }
+.delay-6 { animation-delay: 1400ms; }
+
+/* Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    opacity: 1;
+    animation: none;
+  }
 }

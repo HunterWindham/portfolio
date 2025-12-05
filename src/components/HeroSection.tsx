@@ -28,12 +28,13 @@ export function HeroSection() {
                 uppercase text-caption tracking-[0.12em]
                 text-text-medium
                 mb-[12px]
+                animate-in animate-slide-up delay-2
               "
             >
               Hey! I'm Hunter Windham, and I enjoy
             </p>
 
-            <h1 className="text-h1 text-text-high max-w-[720px]">
+            <h1 className="text-h1 text-text-high max-w-[720px] animate-in animate-slide-up delay-3">
               Building Clean, Scalable Products That Solve Real Problems
             </h1>
 
@@ -41,16 +42,17 @@ export function HeroSection() {
               className="
                 text-body-large text-text-low
                 max-w-[640px] mt-md
+                animate-in animate-slide-up delay-4
               "
             >
               Full-Stack Developer
             </p>
 
-            <SocialLinks className="mt-lg" />
+            <SocialLinks className="mt-lg animate-in animate-slide-up delay-5" />
           </div>
 
           {/* Right Content - Hero Illustration */}
-          <div className="order-1 md:order-2 flex justify-center md:justify-end">
+          <div className="order-1 md:order-2 flex justify-center md:justify-end animate-in animate-scale-in delay-2">
             <div
               className="
                 relative w-full max-w-[400px] aspect-3/4

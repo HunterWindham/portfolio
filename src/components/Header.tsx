@@ -23,6 +23,7 @@ export function Header() {
         px-md md:px-lg
         bg-bg/80 backdrop-blur-md
         transition-shadow duration-(--duration-normal)
+        animate-in animate-slide-down delay-1
         ${isScrolled ? 'shadow-(--shadow-1)' : ''}
       `}
     >
