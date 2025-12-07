@@ -34,7 +34,7 @@ interface SocialLinksProps {
 
 export function SocialLinks({ showLabels = false, className = '' }: SocialLinksProps) {
   return (
-    <div className={`flex gap-lg ${className}`}>
+    <div className={`flex flex-wrap gap-lg ${className}`}>
       {socialLinks.map((link) => (
         <a
           key={link.label}
@@ -53,7 +53,7 @@ export function SocialLinks({ showLabels = false, className = '' }: SocialLinksP
         >
           {link.icon}
           {showLabels && (
-            <span className="text-sm font-medium">{link.label}</span>
+            <span className="text-xs font-medium">{link.label}</span>
           )}
           {!showLabels && (
             <span

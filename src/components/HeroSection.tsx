@@ -1,13 +1,28 @@
+import { useState, useEffect } from 'react';
 import headshotImg from '../assets/headshot.webp';
 import { LiquidEther } from './LiquidEther';
 import { SocialLinks } from './SocialLinks';
 
 export function HeroSection() {
+  // Lazy initializer reads the value once on mount - no effect setState needed
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia('(max-width: 767px)').matches
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    const handleChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
   return (
     <section
+      id="home"
       className="
         relative
-        min-h-[calc(100vh-72px)] pt-[72px]
+        min-h-screen pt-[72px]
         flex items-center
         py-xxl
       "
@@ -31,7 +46,7 @@ export function HeroSection() {
                 animate-in animate-slide-up delay-2
               "
             >
-              Hey! I'm Hunter Windham, and I enjoy
+              Hey! I'm <span className="text-primary">Hunter Windham</span>, and I enjoy
             </p>
 
             <h1 className="text-h1 text-text-high max-w-[720px] animate-in animate-slide-up delay-3">
@@ -48,7 +63,7 @@ export function HeroSection() {
               Full-Stack Developer
             </p>
 
-            <SocialLinks className="mt-lg animate-in animate-slide-up delay-5" />
+            <SocialLinks showLabels={isMobile} className="mt-lg animate-in animate-slide-up delay-5" />
           </div>
 
           {/* Right Content - Hero Illustration */}
