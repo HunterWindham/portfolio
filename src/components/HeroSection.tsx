@@ -49,7 +49,7 @@ export function HeroSection() {
               Hey! I'm <span className="text-primary">Hunter Windham</span>, and I enjoy
             </p>
 
-            <h1 className="text-h1 text-text-high max-w-[720px] animate-in animate-slide-up delay-3">
+            <h1 className="text-h1 text-text-high max-w-[720px] animate-in-lcp animate-slide-up-lcp">
               Building Clean, Scalable Products That Solve Real Problems
             </h1>
 
@@ -67,7 +67,7 @@ export function HeroSection() {
           </div>
 
           {/* Right Content - Hero Illustration */}
-          <div className="order-1 md:order-2 flex justify-center md:justify-end animate-in animate-scale-in delay-2">
+          <div className="order-1 md:order-2 flex justify-center md:justify-end animate-in-lcp animate-scale-in-lcp">
             <div
               className="
                 relative w-full max-w-[280px] md:max-w-[400px] aspect-3/4
@@ -76,11 +76,12 @@ export function HeroSection() {
                 shadow-(--shadow-2)
               "
             >
-              {/* Headshot */}
+              {/* Headshot - LCP candidate, prioritize loading */}
               <img
                 src={headshotImg}
                 alt="Hunter Windham"
                 className="absolute inset-0 w-full h-full object-cover object-top"
+                fetchPriority="high"
               />
             </div>
           </div>

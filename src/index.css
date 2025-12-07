@@ -301,6 +301,16 @@ a:hover {
   }
 }
 
+/* LCP-safe version - subtle movement without hiding content */
+@keyframes slide-up-lcp {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @keyframes slide-down {
   from {
     opacity: 0;
@@ -323,6 +333,16 @@ a:hover {
   }
 }
 
+/* LCP-safe version - subtle scale without hiding content */
+@keyframes scale-in-lcp {
+  from {
+    transform: scale(0.98);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -335,10 +355,21 @@ a:hover {
   animation-timing-function: var(--ease-smooth);
 }
 
+/* LCP-safe animation - doesn't hide content initially (prevents NO_LCP error) */
+.animate-in-lcp {
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--ease-smooth);
+}
+
 /* Animation types */
 .animate-slide-up {
   animation-name: slide-up;
   animation-duration: 1000ms;
+}
+
+.animate-slide-up-lcp {
+  animation-name: slide-up-lcp;
+  animation-duration: 800ms;
 }
 
 .animate-slide-down {
@@ -349,6 +380,11 @@ a:hover {
 .animate-scale-in {
   animation-name: scale-in;
   animation-duration: 1200ms;
+}
+
+.animate-scale-in-lcp {
+  animation-name: scale-in-lcp;
+  animation-duration: 900ms;
 }
 
 .animate-fade-in {

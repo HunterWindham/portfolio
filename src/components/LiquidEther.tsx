@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/unsupported-syntax */
 // Credit to https://reactbits.dev/backgrounds/liquid-ether for the original code.
 // This WebGL component uses inline classes intentionally for closure access to shared state.
 
