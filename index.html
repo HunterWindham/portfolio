@@ -14,7 +14,7 @@
         const theme = stored || (prefersDark ? 'dark' : 'light');
         document.documentElement.classList.add(theme);
         // Set background immediately so there's no white flash before CSS loads
-        document.documentElement.style.backgroundColor = theme === 'dark' ? '#0F1419' : '#F0F0F0';
+        document.documentElement.style.backgroundColor = theme === 'dark' ? '#18181a' : '#F6F7F9';
       })();
     </script>
 
@@ -31,6 +31,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx"></script>    
   </body>
 </html>
