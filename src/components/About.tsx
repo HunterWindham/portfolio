@@ -41,21 +41,27 @@ export function About() {
             
             <div className="scroll-reveal reveal-up scroll-delay-2 space-y-md text-body-large text-text-medium">
               <p>
-                I have <span className="text-primary">7+ years of experience</span> building and improving web applications.
-                I enjoy digging into complex problems, understanding how systems work under the hood, and creating
-                solutions that are <span className="text-primary">clean, reliable, and built to scale</span>. I take ownership of what I build and
-                care about leaving things better than I found them.
+                I have <span className="text-primary font-semibold">7+ years of experience designing, building,
+                and improving web applications</span>. I enjoy digging into
+                <span className="text-primary font-semibold"> complex problems</span>, understanding how
+                systems work under the hood, and creating solutions that are
+                <span className="text-primary font-semibold"> clean, reliable, and built to scale</span>.
+                I take <span className="text-primary font-semibold">full ownership</span> of my work and
+                always look for ways to leave systems, teams, and processes better than I found them.
               </p>
 
               <p>
-                I work best in environments with <span className="text-primary">open communication and real collaboration</span>. Whether I'm leading
-                a project or supporting a team, I focus on making the process smoother for everyone involved.
+                I thrive in environments with
+                <span className="text-primary font-semibold"> open communication and genuine collaboration</span>.
+                Whether I’m <span className="text-primary font-semibold">leading a project</span> or
+                contributing as part of a <span className="text-primary font-semibold">cross-functional team</span>,
+                I focus on clarity, smooth execution, and helping the people around me succeed.
               </p>
 
               <p>
-                Outside of work, you'll find me fishing, biking, playing games, watching shows, or spending time
-                with my family, my wife, and our two cats. A good day for me balances building things I'm proud
-                of and spending time with the people (and pets) I love.
+                Outside of work, you’ll find me fishing, biking, playing games, watching TV, or spending time
+                with my <span className="text-primary font-semibold">family, my wife, and our two cats</span>.
+                A good day for me balances <span className="text-primary font-semibold">creating things I’m proud of</span> and spending time with the people (and pets) I love.
               </p>
             </div>
             {/* Experience Timeline */}
