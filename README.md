@@ -111,4 +111,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For inquiries, please use the contact form on the website or reach out via:
 - Email: contact@hunterwindham.dev
 - LinkedIn: [hunterwindham](https://www.linkedin.com/in/hunterwindham/)
-- GitHub: [hunterwindham](https://github.com/hunterwindham)
