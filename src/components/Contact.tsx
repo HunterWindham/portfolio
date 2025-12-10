@@ -22,11 +22,11 @@ export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [result, setResult] = useState<string | null>(null);
 
-  // Web3Forms public access key
-  const accessKey = 'ce3ae895-20a4-484d-9aa1-7662041131e6';
+  // Web3Forms public access key from environment variable
+  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
   const { submit: onSubmit } = useWeb3Forms({
-    access_key: accessKey,
+    access_key: accessKey || '',
     settings: {
       from_name: 'hunterwindham.dev',
       subject: 'New Contact Message from Portfolio Website',
@@ -43,9 +43,29 @@ export function Contact() {
     },
     onError: (msg) => {
       setIsSubmitted(false);
-      setResult(msg);
+      setResult(msg || 'Failed to send message. Please try again later.');
     },
   });
+
+  // Show error if access key is missing
+  if (!accessKey) {
+    return (
+      <section
+        ref={sectionRef}
+        id="contact"
+        className="py-xxl bg-bg min-h-[89vh] flex items-center"
+      >
+        <div className="container">
+          <div className="text-center">
+            <h2 className="text-h2 text-text-high mb-md">Contact</h2>
+            <p className="text-body text-danger">
+              Contact form is not configured. Please set VITE_WEB3FORMS_ACCESS_KEY in your environment variables.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

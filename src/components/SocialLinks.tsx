@@ -60,7 +60,7 @@ export function SocialLinks({ showLabels = false, className = '' }: SocialLinksP
               className="
                 absolute left-1/2 -translate-x-1/2 -top-6
                 px-2 py-1 rounded
-                bg-(--color-text) text-(--color-background)
+                bg-text-high text-bg
                 text-xs font-medium whitespace-nowrap
                 opacity-0 group-hover:opacity-100
                 transition-opacity duration-(--duration-fast)

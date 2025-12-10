@@ -122,11 +122,21 @@ export function About() {
 
             {/* Skills */}
             <div className="grid gap-lg">
-              {skills.map((skillGroup, index) => (
+              {skills.map((skillGroup, index) => {
+                // Map index to valid scroll-delay classes (Tailwind needs full class names)
+                const delayClass = [
+                  'scroll-delay-2',
+                  'scroll-delay-3',
+                  'scroll-delay-4',
+                  'scroll-delay-5',
+                  'scroll-delay-6'
+                ][index] || 'scroll-delay-2';
+                
+                return (
                 <div
                   key={skillGroup.category}
                   className={`
-                    scroll-reveal reveal-left scroll-delay-${index + 2}
+                    scroll-reveal reveal-left ${delayClass}
                     bg-bg rounded-md
                     p-lg shadow-(--shadow-1)
                   `}
@@ -151,7 +161,8 @@ export function About() {
                     ))}
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
