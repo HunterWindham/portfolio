@@ -19,24 +19,11 @@ function App() {
       return;
     }
 
-    const timeoutIds: number[] = [];
-
-    timeoutIds.push(
-      window.setTimeout(() => {
-        const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-        // Allow hash updates after scroll completes (smooth scroll takes ~500-1000ms)
-        timeoutIds.push(
-          window.setTimeout(() => {
-            isInitialScroll.current = false;
-          }, 1000)
-        );
-      }, 100)
-    );
-
-    return () => timeoutIds.forEach(clearTimeout);
+    const element = document.querySelector(hash);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    isInitialScroll.current = false;
   }, []);
 
   // Update URL hash as user scrolls through sections

@@ -14,7 +14,7 @@ const socialLinks = [
   },
   {
     label: 'Email',
-    href: 'mailto:hunter.a.windham@gmail.com',
+    href: 'mailto:contact@hunterwindham.dev',
     icon: <MailIcon />,
   },
   {

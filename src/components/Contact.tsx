@@ -1,30 +1,51 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import useWeb3Forms from '@web3forms/react';
 import { useScrollReveal } from '../hooks';
+
+type FormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 export function Contact() {
   const sectionRef = useScrollReveal();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+  const { 
+    register, 
+    reset, 
+    handleSubmit, 
+    formState: { isSubmitting, isValid, errors, touchedFields } 
+  } = useForm<FormData>({
+    mode: 'onChange', // Validate on change to enable/disable button in real-time
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [result, setResult] = useState<string | null>(null);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission - replace with actual API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
+  // Web3Forms public access key
+  const accessKey = 'ce3ae895-20a4-484d-9aa1-7662041131e6';
+
+  const { submit: onSubmit } = useWeb3Forms({
+    access_key: accessKey,
+    settings: {
+      from_name: 'hunterwindham.dev',
+      subject: 'New Contact Message from Portfolio Website',
+    },
+    onSuccess: (msg) => {
+      setIsSubmitted(true);
+      setResult(msg);
+      reset();
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setResult(null);
+      }, 5000);
+    },
+    onError: (msg) => {
+      setIsSubmitted(false);
+      setResult(msg);
+    },
+  });
 
   return (
     <section
@@ -37,21 +58,20 @@ export function Contact() {
           {/* Left Column - Contact Info */}
           <div>
             <p className="scroll-reveal reveal-up uppercase text-small tracking-[0.12em] text-text-low mb-sm">
-              Get in Touch
+              Connect with me
             </p>
             <h2 className="scroll-reveal reveal-up scroll-delay-1 text-h2 text-text-high mb-md">
-              Let's create something amazing together
+              Let's talk about working together
             </h2>
             <p className="scroll-reveal reveal-up scroll-delay-2 text-body-large text-text-medium mb-xl">
-              Have a project in mind? I'd love to hear about it. Drop me a message 
-              and I'll get back to you as soon as possible.
+              Exploring a role, have an opportunity in mind, or just want to say hello? I'm excited to connect - drop a note and I'll be in touch.
             </p>
 
             {/* Contact Details */}
             <div className="scroll-reveal reveal-up scroll-delay-3 space-y-lg">
               {/* Email */}
               <a
-                href="mailto:hunter.a.windham@gmail.com"
+                href="mailto:contact@hunterwindham.dev"
                 className="
                   flex items-center gap-md
                   text-text-medium hover:text-primary
@@ -80,7 +100,7 @@ export function Contact() {
                 </div>
                 <div>
                   <div className="text-caption text-text-low">Email</div>
-                  <div className="font-semibold">hunter.a.windham@gmail.com</div>
+                  <div className="font-semibold">contact@hunterwindham.dev</div>
                 </div>
               </a>
 
@@ -128,7 +148,7 @@ export function Contact() {
                 <div
                   className="
                     w-xxl h-xxl rounded-full
-                    bg-success bg-opacity-10
+                    bg-success
                     flex items-center justify-center mx-auto mb-md
                   "
                 >
@@ -137,8 +157,8 @@ export function Contact() {
                     height="32"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="var(--color-success)"
-                    strokeWidth="2"
+                    stroke="white"
+                    strokeWidth="4"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
@@ -153,33 +173,38 @@ export function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-lg">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-lg">
                 {/* Name Field */}
                 <div>
                   <label
                     htmlFor="name"
                     className="block text-caption font-semibold text-text-medium mb-sm"
                   >
-                    Name
+                    Name <span className="text-danger">*</span>
                   </label>
                   <input
                     type="text"
                     id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="
+                    {...register('name', { required: 'Name is required' })}
+                    className={`
                       w-full h-[44px] px-[12px]
-                      rounded-[8px] border border-border
+                      rounded-[8px] border
                       bg-bg
                       text-text-high
-                      focus:border-primary
                       focus:shadow-[0_0_0_4px_rgba(11,110,79,0.08)]
                       outline-none transition-all duration-(--duration-fast)
-                    "
+                      ${errors.name && touchedFields.name
+                        ? 'border-danger focus:border-danger'
+                        : 'border-border focus:border-primary'
+                      }
+                    `}
                     placeholder="Your name"
                   />
+                  {errors.name && touchedFields.name && (
+                    <p className="text-caption text-danger mt-xs">
+                      {errors.name.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Email Field */}
@@ -188,26 +213,37 @@ export function Contact() {
                     htmlFor="email"
                     className="block text-caption font-semibold text-text-medium mb-sm"
                   >
-                    Email
+                    Email <span className="text-danger">*</span>
                   </label>
                   <input
                     type="email"
                     id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="
+                    {...register('email', { 
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Please enter a valid email address'
+                      }
+                    })}
+                    className={`
                       w-full h-[44px] px-[12px]
-                      rounded-[8px] border border-border
+                      rounded-[8px] border
                       bg-bg
                       text-text-high
-                      focus:border-primary
                       focus:shadow-[0_0_0_4px_rgba(11,110,79,0.08)]
                       outline-none transition-all duration-(--duration-fast)
-                    "
+                      ${errors.email && touchedFields.email
+                        ? 'border-danger focus:border-danger'
+                        : 'border-border focus:border-primary'
+                      }
+                    `}
                     placeholder="your@email.com"
                   />
+                  {errors.email && touchedFields.email && (
+                    <p className="text-caption text-danger mt-xs">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Message Field */}
@@ -216,33 +252,45 @@ export function Contact() {
                     htmlFor="message"
                     className="block text-caption font-semibold text-text-medium mb-sm"
                   >
-                    Message
+                    Message <span className="text-danger">*</span>
                   </label>
                   <textarea
                     id="message"
-                    name="message"
-                    required
                     rows={5}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="
+                    {...register('message', { required: 'Message is required' })}
+                    className={`
                       w-full px-[12px] py-[10px]
-                      rounded-[8px] border border-border
+                      rounded-[8px] border
                       bg-bg
                       text-text-high
-                      focus:border-primary
                       focus:shadow-[0_0_0_4px_rgba(11,110,79,0.08)]
                       outline-none transition-all duration-(--duration-fast)
                       resize-none
-                    "
-                    placeholder="Tell me about your project..."
+                      ${errors.message && touchedFields.message
+                        ? 'border-danger focus:border-danger'
+                        : 'border-border focus:border-primary'
+                      }
+                    `}
+                    placeholder="Your message..."
                   />
+                  {errors.message && touchedFields.message && (
+                    <p className="text-caption text-danger mt-xs">
+                      {errors.message.message}
+                    </p>
+                  )}
                 </div>
+
+                {/* Error Message */}
+                {result && !isSubmitted && (
+                  <div className="text-body text-danger">
+                    {result}
+                  </div>
+                )}
 
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={!isValid || isSubmitting}
                   className="
                     btn btn--solid btn--large w-full
                     disabled:opacity-50 disabled:cursor-not-allowed
